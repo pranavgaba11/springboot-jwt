@@ -1,8 +1,8 @@
-package com.pranav.springbootjwt.models;
+package com.pranav.springbootjwt.payload;
 
 import java.io.Serializable;
 
-public class AuthenticationRequest implements Serializable{
+public class AuthenticationRequest {
 
 	private String username;
 	private String password;
