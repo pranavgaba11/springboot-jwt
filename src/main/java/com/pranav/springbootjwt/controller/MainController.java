@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pranav.springbootjwt.models.ERole;
@@ -123,5 +124,11 @@ public class MainController {
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+	}
+	
+	@PostMapping("isvalidjwt")
+	public boolean isValidJWT(@RequestParam String jwtToken, @RequestParam String username) {
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+		return jwtUtils.validateToken(jwtToken, userDetails);
 	}
 }
